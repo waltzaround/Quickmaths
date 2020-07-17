@@ -21,7 +21,7 @@ const playButton = document.getElementById('play-button');
 const usernameInput = document.getElementById('username-input');
 const audioObj = new Audio(bg);
 const startaudio = new Audio(start);
-audioObj.loop = true
+audioObj.loop = true;
 
 Promise.all([
   connect(onGameOver),
