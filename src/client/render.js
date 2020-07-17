@@ -42,7 +42,7 @@ function render() {
 
   // Draw all players
   renderPlayer(me, me);
-  others.forEach(renderPlayer.bind(null, me));
+  others.forEach(renderOtherPlayer.bind(null, me));
 }
 
 function renderBackground(x, y) {
@@ -79,6 +79,7 @@ function renderPlayer(me, player) {
     PLAYER_RADIUS * 2,
     PLAYER_RADIUS * 2,
   );
+  
   context.restore();
 
   // Draw health bar
@@ -96,6 +97,52 @@ function renderPlayer(me, player) {
     PLAYER_RADIUS * 2 * (1 - player.hp / PLAYER_MAX_HP),
     2,
   );
+  
+}
+
+// Renders a ship at the given coordinates
+function renderOtherPlayer(me, player) {
+  const { x, y, direction } = player;
+  const canvasX = canvas.width / 2 + x - me.x;
+  const canvasY = canvas.height / 2 + y - me.y;
+
+  // Draw ship
+  context.save();
+  context.translate(canvasX, canvasY);
+  context.rotate(direction);
+  context.drawImage(
+    getAsset('ship.svg'),
+    -PLAYER_RADIUS,
+    -PLAYER_RADIUS,
+    PLAYER_RADIUS * 2,
+    PLAYER_RADIUS * 2,
+  );
+  
+  context.restore();
+
+  // Draw health bar
+  context.fillStyle = 'white';
+  context.fillRect(
+    canvasX - PLAYER_RADIUS,
+    canvasY + PLAYER_RADIUS + 8,
+    PLAYER_RADIUS * 2,
+    2,
+  );
+  context.fillStyle = 'red';
+  context.fillRect(
+    canvasX - PLAYER_RADIUS + PLAYER_RADIUS * 2 * player.hp / PLAYER_MAX_HP,
+    canvasY + PLAYER_RADIUS + 8,
+    PLAYER_RADIUS * 2 * (1 - player.hp / PLAYER_MAX_HP),
+    2,
+  );
+
+  context.font = "32px Arial";
+  context.fillStyle = "white";
+  context.textAlign = "center";
+  
+  context.fillText("2 X 2",  canvasX,  canvasY - 40,);
+  context.font = "12px Arial";
+  context.fillText("Username",  canvasX,  canvasY + 48,);
 }
 
 function renderBullet(me, bullet) {
