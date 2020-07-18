@@ -3,6 +3,7 @@
 import io from 'socket.io-client';
 import { throttle } from 'throttle-debounce';
 import { processGameUpdate } from './state';
+import playFireAudio from './audio';
 
 const Constants = require('../shared/constants');
 
@@ -30,8 +31,9 @@ export const connect = onGameOver => (
   })
 );
 
-export const fire = function(answer) {
+export const fire = function (answer) {
   socket.emit(Constants.MSG_TYPES.FIRE, answer);
+  playFireAudio(1);
 };
 
 export const play = username => {
