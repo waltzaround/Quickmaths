@@ -26,7 +26,7 @@ function getRandomMath(lowerBound, upperBound) {
       leftHandSide,
       rightHandSide,
       result,
-      mathString: `${leftHandSide} ${mathOperationChosen} ${rightHandSide} = ?`,
+      mathString: `${leftHandSide} ${mathOperationChosen} ${rightHandSide}`,
     };
   }
   const { result, divider } = MATH_MAPPING[':'](rightHandSide);

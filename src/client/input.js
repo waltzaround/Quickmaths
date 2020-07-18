@@ -22,7 +22,6 @@ function numberInput(newnum) {
   if (inputNumbers.length === 5) {
     inputNumbers = inputNumbers.substring(1, 5);
   }
-  console.log('Number is now', inputNumbers);
 }
 
 function useNumber() {

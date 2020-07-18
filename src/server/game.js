@@ -103,7 +103,7 @@ class Game {
       const socket = this.sockets[playerID];
       const player = this.players[playerID];
       if (player.hp <= 0) {
-        socket.emit(Constants.MSG_TYPES.GAME_OVER);
+        socket.emit(Constants.MSG_TYPES.GAME_OVER, { score: player.score });
         this.removePlayer(socket);
       }
     });
