@@ -25,11 +25,11 @@ class Player extends ObjectClass {
     this.y = Math.max(0, Math.min(Constants.MAP_SIZE, this.y));
 
     // Fire a bullet, if needed
-    this.fireCooldown -= dt;
-    if (this.fireCooldown <= 0) {
-      this.fireCooldown += Constants.PLAYER_FIRE_COOLDOWN;
-      return new Bullet(this.id, this.x, this.y, this.direction);
-    }
+    // this.fireCooldown -= dt;
+    // if (this.fireCooldown <= 0) {
+    //   this.fireCooldown += Constants.PLAYER_FIRE_COOLDOWN;
+    //   return new Bullet(this.id, this.x, this.y, this.direction);
+    // }
 
     return null;
   }
