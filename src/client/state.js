@@ -21,7 +21,7 @@ export function processGameUpdate(update) {
     gameStart = Date.now();
   }
   gameUpdates.push(update);
-
+  if (update.players) window.players = update.players;
   updateLeaderboard(update.leaderboard);
 
   // Keep only one game update before the current server time

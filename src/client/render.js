@@ -43,7 +43,7 @@ function render() {
 
   // Draw all players
   renderPlayer(me, me);
-  others.forEach(renderOtherPlayer.bind(null, me));
+  others.forEach(otherPlayer => renderOtherPlayer(me, otherPlayer));
 }
 
 function renderBackground(x, y) {
@@ -83,7 +83,7 @@ function renderPlayer(me, player) {
     PLAYER_RADIUS * 2,
     PLAYER_RADIUS * 2,
   );
-  
+
   context.restore();
 
   // Draw health bar
@@ -104,14 +104,24 @@ function renderPlayer(me, player) {
   context.font = '32px Arial';
   context.fillStyle = 'white';
   context.textAlign = 'center';
-  
+
   context.fillText('Type in an answer and hit enter', canvasX, canvasY * 2 - 40);
-  
+}
+
+function hasNaNAtEnd(string) {
+  const last3Char = string.slice(string.length - 3);
+  return last3Char === 'NaN';
 }
 
 // Renders a ship at the given coordinates
 function renderOtherPlayer(me, player) {
-  const { x, y, direction } = player;
+  const { x, y, direction, id } = player;
+  let user = null;
+  const striperID = hasNaNAtEnd(id) ? id.slice(0, id.length - 3) : id;
+  const otherPlayer = window.players[striperID];
+  if (otherPlayer || user) {
+    user = otherPlayer;
+  }
   const canvasX = canvas.width / 2 + x - me.x;
   const canvasY = canvas.height / 2 + y - me.y;
 
@@ -126,7 +136,6 @@ function renderOtherPlayer(me, player) {
     PLAYER_RADIUS * 2,
     PLAYER_RADIUS * 2,
   );
-  
   context.restore();
 
   // Draw health bar
@@ -145,13 +154,13 @@ function renderOtherPlayer(me, player) {
     2,
   );
 
-  context.font = "32px Arial";
-  context.fillStyle = "white";
-  context.textAlign = "center";
-  
-  context.fillText("2 X 2",  canvasX,  canvasY - 40,);
-  context.font = "12px Arial";
-  context.fillText("Username",  canvasX,  canvasY + 48,);
+  context.font = '32px Arial';
+  context.fillStyle = 'white';
+  context.textAlign = 'center';
+
+  context.fillText(user.mathQuestion.mathString, canvasX, canvasY - 40);
+  context.font = '12px Arial';
+  context.fillText(user.username, canvasX, canvasY + 48);
 }
 
 function renderBullet(me, bullet) {

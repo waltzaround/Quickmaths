@@ -1,6 +1,7 @@
 const ObjectClass = require('./object');
 const Bullet = require('./bullet');
 const Constants = require('../shared/constants');
+const { getRandomMath } = require('./utils');
 
 class Player extends ObjectClass {
   constructor(id, username, x, y) {
@@ -9,6 +10,7 @@ class Player extends ObjectClass {
     this.hp = Constants.PLAYER_MAX_HP;
     this.fireCooldown = 0;
     this.score = 0;
+    this.mathQuestion = getRandomMath(1, 10);
   }
 
   // Returns a newly created bullet, or null.
