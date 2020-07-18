@@ -16,21 +16,30 @@
 
     gtag('config', 'UA-58664433-3');
   </script>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
+<script>
+  WebFont.load({
+    google: {
+      families: ['DM Sans']
+    }
+  });
+</script>
 </head>
 <body>
   <canvas id="game-canvas"></canvas>
   <div id="play-menu" class="hidden">
-    <h1>Quick Maths</h1>
+    <h1>🤓 Mafs.io 🤓</h1>
     <p>
-
-      Use arrow keys to move.
-      <br />      Answer maths questions to kill other players when they appear. 
+         
+      Use arrow keys to move.<br/>⬆️⬇️⏪⏩
+      <br />      <br />      Do quick maths to wreck other players. <br/>➕➖✖️➗
 
     </p>
     <hr />
   
-    <input type="text" id="username-input" placeholder="Username" />
-    <button id="play-button">PLAY</button>
+    <input type="text" id="username-input" placeholder="Username (Optional)" />
+    <button id="play-button">Play Game</button>
   </div>
   <div id="leaderboard" class="hidden">
     <table>
