@@ -44,6 +44,7 @@ function onKeyDown(e) {
   if (e.code === 'Digit8') numberInput(8);
   if (e.code === 'Digit9') numberInput(9);
   if (e.code === 'Digit0') numberInput(0);
+  if (e.code === 'Minus') numberInput('-');
   if (e.code === 'Enter') useNumber();
 
   console.log(e.code);
