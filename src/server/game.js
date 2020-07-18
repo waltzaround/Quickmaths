@@ -34,16 +34,17 @@ class Game {
   }
 
   fireBullet(socket, number) {
-    if(this.players[socket.id]) {
-      console.log("Bullet fire method firedß")
-      var player = this.players[socket.id]
-      //this.players[socket.id].fireBullet(number);
+    if (this.players[socket.id]) {
+      const player = this.players[socket.id];
+      // this.players[socket.id].fireBullet(number);
       // Create a new bullet aimed at the nearest player
-      if(Object.keys(this.players).length > 1){
-        // Create the new bullet
-        var nb = new Bullet(player.id, player.x, player.y, player.directionTo(player.findClosestPlayerFrom(this.players) ))
-        this.bullets.push(nb);
-      }
+      Object.values(this.players).forEach(({ mathQuestion, id }) => {
+        const { result } = mathQuestion;
+        if (number === result) {
+          const nb = new Bullet(player.id, player.x, player.y, player.directionTo(this.players[id]));
+          this.bullets.push(nb);
+        }
+      });
     }
   }
 
@@ -69,24 +70,22 @@ class Game {
       const newBullet = player.update(dt);
       // console.log(newBullet);
       // console.log(this.players);
-      
+
       // self.players.forEach(function(item,index){
       //   console.log(this)
       //   console.log(player.distanceTo(item))
       // })
       if (newBullet) {
         Object.keys(this.players).forEach(opponentID => {
-          let opponent = this.players[opponentID];
-          if (opponentID != playerID) {
-            let d = player.distanceTo(opponent);
+          const opponent = this.players[opponentID];
+          if (opponentID !== playerID) {
+            const d = player.distanceTo(opponent);
             if (d < 2000) {
-              newBullet.setDirection(player.directionTo(opponent))
-              //this.bullets.push(newBullet);
+              newBullet.setDirection(player.directionTo(opponent));
+              // this.bullets.push(newBullet);
             }
           }
-          
         });
-        
       }
     });
 

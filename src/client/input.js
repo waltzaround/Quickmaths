@@ -1,11 +1,12 @@
 // Learn more about this file at:
 // https://victorzhou.com/blog/build-an-io-game-part-1/#6-client-input-%EF%B8%8F
 import { updateDirection, fire } from './networking';
+
 const upTurn = Math.atan2(0, 0);
 const rightTurn = Math.atan2(1, 0);
 const downTurn = Math.atan2(0, -1);
 const leftTurn = Math.atan2(-1, 0);
-var inputNumbers = ""
+let inputNumbers = '';
 
 function onMouseInput(e) {
   handleInput(e.clientX, e.clientY);
@@ -16,25 +17,20 @@ function onTouchInput(e) {
   handleInput(touch.clientX, touch.clientY);
 }
 
-function numberInput(newnum){
-  inputNumbers = inputNumbers + newnum;
-  if (inputNumbers.length === 5){
-    inputNumbers = inputNumbers.substring(1, 5)
+function numberInput(newnum) {
+  inputNumbers += newnum;
+  if (inputNumbers.length === 5) {
+    inputNumbers = inputNumbers.substring(1, 5);
   }
-  console.log("Number is now", inputNumbers)
+  console.log('Number is now', inputNumbers);
 }
- 
-function useNumber(){
-  if (inputNumbers == "6"){
-    fire(Number(inputNumbers));
-  }
-  inputNumbers = "";
-  
+
+function useNumber() {
+  fire(Number(inputNumbers));
+  inputNumbers = '';
 }
 
 function onKeyDown(e) {
-
-  
   if (e.code === 'ArrowUp') updateDirection(upTurn);
   if (e.code === 'ArrowRight') updateDirection(rightTurn);
   if (e.code === 'ArrowLeft') updateDirection(leftTurn);
@@ -53,9 +49,6 @@ function onKeyDown(e) {
 
   console.log(e.code);
 }
-function onKeyUp(e) {
-
-}
 
 function handleInput(x, y) {
   const dir = Math.atan2(x - window.innerWidth / 2, window.innerHeight / 2 - y);
@@ -70,7 +63,6 @@ export function startCapturingInput() {
   window.addEventListener('touchmove', onTouchInput);
 
   window.addEventListener('keydown', onKeyDown);
-  window.addEventListener('keyup', onKeyUp);
 }
 
 export function stopCapturingInput() {
