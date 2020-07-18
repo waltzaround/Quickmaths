@@ -34,6 +34,7 @@ function useNumber() {
 }
 
 function onKeyDown(e) {
+  console.log(e);
   if (e.code === 'ArrowUp') updateDirection(upTurn);
   if (e.code === 'ArrowRight') updateDirection(rightTurn);
   if (e.code === 'ArrowLeft') updateDirection(leftTurn);
@@ -48,6 +49,16 @@ function onKeyDown(e) {
   if (e.code === 'Digit8') numberInput(8);
   if (e.code === 'Digit9') numberInput(9);
   if (e.code === 'Digit0') numberInput(0);
+  if (e.code === 'Numpad1') numberInput(1);
+  if (e.code === 'Numpad2') numberInput(2);
+  if (e.code === 'Numpad3') numberInput(3);
+  if (e.code === 'Numpad4') numberInput(4);
+  if (e.code === 'Numpad5') numberInput(5);
+  if (e.code === 'Numpad6') numberInput(6);
+  if (e.code === 'Numpad7') numberInput(7);
+  if (e.code === 'Numpad8') numberInput(8);
+  if (e.code === 'Numpad9') numberInput(9);
+  if (e.code === 'Numpad0') numberInput(0);
   if (e.code === 'Enter') useNumber();
 }
 
