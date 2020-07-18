@@ -18,6 +18,10 @@ class Object {
     return Math.sqrt(dx * dx + dy * dy);
   }
 
+  directionTo(object) {
+    return Math.atan2(object.x - this.x, this.y - object.y);
+  }
+
   setDirection(dir) {
     this.direction = dir;
   }

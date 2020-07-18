@@ -32,7 +32,7 @@ Promise.all([
   usernameInput.focus();
   playButton.onclick = () => {
     // Play!
-    audioObj.play();
+    //audioObj.play();
     startaudio.play();  
     play(usernameInput.value);
     playMenu.classList.add('hidden');
