@@ -52,8 +52,26 @@ class Game {
     Object.keys(this.sockets).forEach(playerID => {
       const player = this.players[playerID];
       const newBullet = player.update(dt);
+      // console.log(newBullet);
+      // console.log(this.players);
+      
+      // self.players.forEach(function(item,index){
+      //   console.log(this)
+      //   console.log(player.distanceTo(item))
+      // })
       if (newBullet) {
-        this.bullets.push(newBullet);
+        Object.keys(this.players).forEach(opponentID => {
+          let opponent = this.players[opponentID]
+          if (opponentID != playerID){
+            let d = player.distanceTo(opponent)
+            if(d < 2000){
+              newBullet.setDirection(player.directionTo(opponent))
+              this.bullets.push(newBullet);
+            }
+          }
+          
+        })
+        
       }
     });
 

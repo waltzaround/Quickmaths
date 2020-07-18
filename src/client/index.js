@@ -34,6 +34,7 @@ Promise.all([
     // Play!
     
     audioObj.play();
+    //audioObj.play();
     startaudio.play();  
     play(usernameInput.value);
     playMenu.classList.add('hidden');
