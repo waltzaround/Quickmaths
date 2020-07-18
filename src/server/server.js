@@ -35,6 +35,8 @@ io.on('connection', socket => {
   socket.on(Constants.MSG_TYPES.JOIN_GAME, joinGame);
   socket.on(Constants.MSG_TYPES.INPUT, handleInput);
   socket.on('disconnect', onDisconnect);
+  socket.on(Constants.MSG_TYPES.FIRE, fireBullet)
+  //socket.on('')
 });
 
 // Setup the Game
@@ -46,6 +48,10 @@ function joinGame(username) {
 
 function handleInput(dir) {
   game.handleInput(this, dir);
+}
+
+function fireBullet(number) {
+  game.fireBullet(this, number);
 }
 
 function onDisconnect() {
