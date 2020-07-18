@@ -21,10 +21,28 @@ import './css/main.css';
 const playMenu = document.getElementById('play-menu');
 const playButton = document.getElementById('play-button');
 const usernameInput = document.getElementById('username-input');
+
+const deathMenu = document.getElementById('death-menu');
+const scoreParagraph = document.getElementById('score-paragraph');
+const playAgainButton = document.getElementById('play-again-button');
+
 const audioObj = new Audio(bg);
 const DIE_AUDIO = [die1, die2];
 const startaudio = new Audio(start);
 audioObj.loop = true;
+
+const startPlaying = () => {
+  //audioObj.play();
+  audioObj.play();
+  startaudio.play();  
+  play(usernameInput.value);
+  playMenu.classList.add('hidden');
+  deathMenu.classList.add('hidden');
+  initState();
+  startCapturingInput();
+  startRendering();
+  setLeaderboardHidden(false);
+}
 
 Promise.all([
   connect(onGameOver),
@@ -34,24 +52,18 @@ Promise.all([
   playMenu.classList.remove('hidden');
   usernameInput.focus();
   playButton.onclick = () => {
-    // Play!
-
-    audioObj.play();
-    startaudio.play();
-    play(usernameInput.value);
-    playMenu.classList.add('hidden');
-    initState();
-    startCapturingInput();
-    startRendering();
-    setLeaderboardHidden(false);
+    startPlaying();
   };
+  playAgainButton.onclick = () => {
+    startPlaying();
+  }
 }).catch(console.error);
 
-function onGameOver() {
-  const dieAudio = new Audio(DIE_AUDIO[random(DIE_AUDIO.length - 1)]);
-  dieAudio.play();
+// message: { score: 123 }
+function onGameOver(message) {
   stopCapturingInput();
   stopRendering();
-  playMenu.classList.remove('hidden');
+  scoreParagraph.innerHTML = "Your score: " + Math.round(message.score);
+  deathMenu.classList.remove('hidden');
   setLeaderboardHidden(true);
 }

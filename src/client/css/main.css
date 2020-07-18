@@ -48,6 +48,7 @@ button:focus {
   height: 100%;
 }
 
+
 #play-menu {
   position: fixed;
   top: 50%;
@@ -81,6 +82,42 @@ button:focus {
 }
 
 #play-menu input:hover {
+  outline: none;
+}
+
+#death-menu {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+ 
+  transform: translateY(-50%) translateX(-50%);
+  padding: 20px 30px;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 5px;
+  text-align: center;
+}
+
+#death-menu p {
+  margin-top: 0.5rem;
+  margin-bottom: 0;
+  width: 70%;
+}
+
+#death-menu input {
+  width: 80%;
+  font-size: 18px;
+  outline: none;
+  border-radius: 8px;
+  border: 1px solid black;
+  margin-bottom: 5px;
+  padding: 12px 0;
+  text-align: center;
+}
+
+#death-menuinput:hover {
   outline: none;
 }
 
@@ -131,6 +168,11 @@ button:focus {
 
   h2 {
     font-size: 1.75rem;
+  }
+
+  #death-menu {
+    padding: 10px 15px;
+    min-width: 280px;
   }
 
   #play-menu {
