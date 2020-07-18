@@ -3,7 +3,6 @@
 import { debounce } from 'throttle-debounce';
 import { getAsset } from './assets';
 import { getCurrentState } from './state';
-import backgroundImage from '../../public/assets/background.jpeg';
 
 const Constants = require('../shared/constants');
 
