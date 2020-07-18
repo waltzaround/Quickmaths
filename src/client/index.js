@@ -54,6 +54,11 @@ Promise.all([
   playButton.onclick = () => {
     startPlaying();
   };
+  usernameInput.addEventListener('keyup', function(e){
+    if (e.code === "Enter"){
+      startPlaying();
+    }
+  })
   playAgainButton.onclick = () => {
     startPlaying();
   }
