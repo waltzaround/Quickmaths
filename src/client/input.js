@@ -38,7 +38,7 @@ function useNumber() {
 }
 
 function onKeyDown(e) {
-  console.log(e);
+  // console.log(e);
   if (e.code === 'ArrowUp') updateDirection(upTurn);
   if (e.code === 'ArrowRight') updateDirection(rightTurn);
   if (e.code === 'ArrowLeft') updateDirection(leftTurn);
