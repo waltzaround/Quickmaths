@@ -35,7 +35,6 @@ class Game {
 
   fireBullet(socket, number) {
     if(this.players[socket.id]) {
-      console.log("Bullet fire method firedß")
       var player = this.players[socket.id]
       //this.players[socket.id].fireBullet(number);
       // Create a new bullet aimed at the nearest player
@@ -67,13 +66,6 @@ class Game {
     Object.keys(this.sockets).forEach(playerID => {
       const player = this.players[playerID];
       const newBullet = player.update(dt);
-      // console.log(newBullet);
-      // console.log(this.players);
-      
-      // self.players.forEach(function(item,index){
-      //   console.log(this)
-      //   console.log(player.distanceTo(item))
-      // })
       if (newBullet) {
         Object.keys(this.players).forEach(opponentID => {
           let opponent = this.players[opponentID];

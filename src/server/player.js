@@ -50,7 +50,6 @@ class Player extends ObjectClass {
     Object.keys(players).forEach(opponentID => {
       let opponent = players[opponentID]
 
-      console.log(opponentID, this.id)
       if (opponentID != this.id){
         
         let d = this.distanceTo(opponent)
@@ -65,7 +64,6 @@ class Player extends ObjectClass {
     // Return the opponent with the lowest distance from player
     
     let closest_player = players[closest_id]
-    console.log(players, closest_id, closest_player)
     return closest_player
   }
   serializeForUpdate() {

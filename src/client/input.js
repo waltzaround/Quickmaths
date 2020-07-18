@@ -51,7 +51,6 @@ function onKeyDown(e) {
   if (e.code === 'Digit0') numberInput(0);
   if (e.code === 'Enter') useNumber();
 
-  console.log(e.code);
 }
 function onKeyUp(e) {
 
