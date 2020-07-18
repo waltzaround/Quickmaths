@@ -38,10 +38,15 @@ function useNumber() {
 }
 
 function onKeyDown(e) {
+  console.log(e);
   if (e.code === 'ArrowUp') updateDirection(upTurn);
   if (e.code === 'ArrowRight') updateDirection(rightTurn);
   if (e.code === 'ArrowLeft') updateDirection(leftTurn);
   if (e.code === 'ArrowDown') updateDirection(downTurn);
+  if (e.code === 'KeyW') updateDirection(upTurn);
+  if (e.code === 'KeyD') updateDirection(rightTurn);
+  if (e.code === 'KeyA') updateDirection(leftTurn);
+  if (e.code === 'KeyS') updateDirection(downTurn);
   if (e.code === 'Digit1') numberInput(1);
   if (e.code === 'Digit2') numberInput(2);
   if (e.code === 'Digit3') numberInput(3);

@@ -102,7 +102,7 @@ function renderPlayer(me, player) {
     PLAYER_RADIUS * 2 * (1 - player.hp / PLAYER_MAX_HP),
     2,
   );
-  context.font = '24px DM Sans';
+  context.font = '20px DM Sans';
   context.fillStyle = 'white';
   context.textAlign = 'center';
 
