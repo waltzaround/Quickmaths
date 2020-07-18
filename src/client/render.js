@@ -99,7 +99,7 @@ function renderPlayer(me, player) {
     PLAYER_RADIUS * 2 * (1 - player.hp / PLAYER_MAX_HP),
     2,
   );
-  context.font = '32px Arial';
+  context.font = '32px DM Sans';
   context.fillStyle = 'white';
   context.textAlign = 'center';
 
@@ -152,12 +152,12 @@ function renderOtherPlayer(me, player) {
     2,
   );
 
-  context.font = '32px Arial';
+  context.font = '32px DM Sans';
   context.fillStyle = 'white';
   context.textAlign = 'center';
 
   context.fillText(user.mathQuestion.mathString, canvasX, canvasY - 40);
-  context.font = '12px Arial';
+  context.font = '12px DM Sans';
   context.fillText(user.username, canvasX, canvasY + 48);
 }
 

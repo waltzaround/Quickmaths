@@ -61,16 +61,16 @@ class Game {
       // })
       if (newBullet) {
         Object.keys(this.players).forEach(opponentID => {
-          let opponent = this.players[opponentID]
-          if (opponentID != playerID){
-            let d = player.distanceTo(opponent)
-            if(d < 2000){
+          let opponent = this.players[opponentID];
+          if (opponentID != playerID) {
+            let d = player.distanceTo(opponent);
+            if (d < 2000) {
               newBullet.setDirection(player.directionTo(opponent))
               this.bullets.push(newBullet);
             }
           }
           
-        })
+        });
         
       }
     });
