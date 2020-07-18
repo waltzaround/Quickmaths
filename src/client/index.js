@@ -32,6 +32,7 @@ Promise.all([
   usernameInput.focus();
   playButton.onclick = () => {
     // Play!
+    
     audioObj.play();
     startaudio.play();  
     play(usernameInput.value);

@@ -60,7 +60,7 @@ function renderBackground(x, y) {
     backgroundY,
     MAP_SIZE / 2,
   );
-  backgroundGradient.addColorStop(0, '#111');
+  backgroundGradient.addColorStop(0, '#222');
   backgroundGradient.addColorStop(1, '#000');
   context.fillStyle = backgroundGradient;
   context.fillRect(0, 0, canvas.width, canvas.height);
@@ -101,6 +101,11 @@ function renderPlayer(me, player) {
     PLAYER_RADIUS * 2 * (1 - player.hp / PLAYER_MAX_HP),
     2,
   );
+  context.font = '32px Arial';
+  context.fillStyle = 'white';
+  context.textAlign = 'center';
+  
+  context.fillText('Type in an answer and hit enter', canvasX, canvasY * 2 - 40);
   
 }
 
