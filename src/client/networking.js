@@ -31,7 +31,7 @@ export const connect = onGameOver => (
   })
 );
 
-export const fire = function (answer) {
+export const fire = answer => {
   socket.emit(Constants.MSG_TYPES.FIRE, answer);
   playFireAudio(1);
 };

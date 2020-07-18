@@ -34,6 +34,8 @@ function render() {
 
   // Draw boundaries
   context.strokeStyle = 'darkgray';
+  context.shadowColor = 'white';
+  context.shadowBlur = 15;
   context.lineWidth = 12;
   context.strokeRect(canvas.width / 2 - me.x, canvas.height / 2 - me.y, MAP_SIZE, MAP_SIZE);
 
@@ -103,7 +105,7 @@ function renderPlayer(me, player) {
   context.fillStyle = 'white';
   context.textAlign = 'center';
 
-  context.fillText('Type in an answer and hit enter', canvasX, canvasY * 2 - 40);
+  context.fillText('Type in a number and hit enter', canvasX, canvasY * 2 - 40);
 }
 
 function hasNaNAtEnd(string) {
