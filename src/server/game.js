@@ -76,16 +76,16 @@ class Game {
       // })
       if (newBullet) {
         Object.keys(this.players).forEach(opponentID => {
-          let opponent = this.players[opponentID]
-          if (opponentID != playerID){
-            let d = player.distanceTo(opponent)
-            if(d < 2000){
+          let opponent = this.players[opponentID];
+          if (opponentID != playerID) {
+            let d = player.distanceTo(opponent);
+            if (d < 2000) {
               newBullet.setDirection(player.directionTo(opponent))
               //this.bullets.push(newBullet);
             }
           }
           
-        })
+        });
         
       }
     });
@@ -127,7 +127,7 @@ class Game {
     return Object.values(this.players)
       .sort((p1, p2) => p2.score - p1.score)
       .slice(0, 5)
-      .map(p => ({ username: p.username, score: Math.round(p.score) }));
+      .map(p => ({ username: p.username, score: Math.round(p.score), math: p.mathQuestion, id: p.id }));
   }
 
   createUpdate(player, leaderboard) {
@@ -144,6 +144,7 @@ class Game {
       others: nearbyPlayers.map(p => p.serializeForUpdate()),
       bullets: nearbyBullets.map(b => b.serializeForUpdate()),
       leaderboard,
+      players: this.players,
     };
   }
 }

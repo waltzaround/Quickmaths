@@ -33,6 +33,8 @@ function useNumber(){
 }
 
 function onKeyDown(e) {
+
+  
   if (e.code === 'ArrowUp') updateDirection(upTurn);
   if (e.code === 'ArrowRight') updateDirection(rightTurn);
   if (e.code === 'ArrowLeft') updateDirection(leftTurn);
@@ -51,6 +53,9 @@ function onKeyDown(e) {
 
   console.log(e.code);
 }
+function onKeyUp(e) {
+
+}
 
 function handleInput(x, y) {
   const dir = Math.atan2(x - window.innerWidth / 2, window.innerHeight / 2 - y);
@@ -65,6 +70,7 @@ export function startCapturingInput() {
   window.addEventListener('touchmove', onTouchInput);
 
   window.addEventListener('keydown', onKeyDown);
+  window.addEventListener('keyup', onKeyUp);
 }
 
 export function stopCapturingInput() {
