@@ -3,6 +3,7 @@
 import { debounce } from 'throttle-debounce';
 import { getAsset } from './assets';
 import { getCurrentState } from './state';
+import backgroundImage from '../../public/assets/background.jpeg';
 
 const Constants = require('../shared/constants');
 
@@ -33,8 +34,8 @@ function render() {
   renderBackground(me.x, me.y);
 
   // Draw boundaries
-  context.strokeStyle = 'black';
-  context.lineWidth = 1;
+  context.strokeStyle = 'darkgray';
+  context.lineWidth = 12;
   context.strokeRect(canvas.width / 2 - me.x, canvas.height / 2 - me.y, MAP_SIZE, MAP_SIZE);
 
   // Draw all bullets
@@ -46,6 +47,9 @@ function render() {
 }
 
 function renderBackground(x, y) {
+  // const imagebg = new Image();
+  // imagebg.src = backgroundImage;
+  // const bgimagepattern = context.createPattern(imagebg, 'repeat');
   const backgroundX = MAP_SIZE / 2 - x + canvas.width / 2;
   const backgroundY = MAP_SIZE / 2 - y + canvas.height / 2;
   const backgroundGradient = context.createRadialGradient(
@@ -56,8 +60,8 @@ function renderBackground(x, y) {
     backgroundY,
     MAP_SIZE / 2,
   );
-  backgroundGradient.addColorStop(0, 'black');
-  backgroundGradient.addColorStop(1, 'gray');
+  backgroundGradient.addColorStop(0, '#111');
+  backgroundGradient.addColorStop(1, '#000');
   context.fillStyle = backgroundGradient;
   context.fillRect(0, 0, canvas.width, canvas.height);
 }
@@ -111,7 +115,7 @@ function renderOtherPlayer(me, player) {
   context.translate(canvasX, canvasY);
   context.rotate(direction);
   context.drawImage(
-    getAsset('ship.svg'),
+    getAsset('ship2.svg'),
     -PLAYER_RADIUS,
     -PLAYER_RADIUS,
     PLAYER_RADIUS * 2,

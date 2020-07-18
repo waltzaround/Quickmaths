@@ -18,7 +18,7 @@ module.exports = {
         test: /\.js$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
+          loader: 'babel-loader',
           options: {
             presets: ['@babel/preset-env'],
           },
@@ -34,7 +34,7 @@ module.exports = {
         ],
       },
       {
-        test: /\.mp3$/,
+        test: /\.(jpeg|ogg|mp3|wav|mpe?g)$/i,
         loader: 'file-loader',
         query: {
           name: 'static/media/[name].[hash:8].[ext]'
