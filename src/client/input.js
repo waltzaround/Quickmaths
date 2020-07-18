@@ -16,10 +16,15 @@ function onTouchInput(e) {
 }
 
 function onKeyDown(e) {
+
+  
   if (e.code === 'ArrowUp') updateDirection(upTurn);
   if (e.code === 'ArrowRight') updateDirection(rightTurn);
   if (e.code === 'ArrowLeft') updateDirection(leftTurn);
   if (e.code === 'ArrowDown') updateDirection(downTurn);
+
+}
+function onKeyUp(e) {
 
 }
 
@@ -36,6 +41,7 @@ export function startCapturingInput() {
   window.addEventListener('touchmove', onTouchInput);
 
   window.addEventListener('keydown', onKeyDown);
+  window.addEventListener('keyup', onKeyUp);
 }
 
 export function stopCapturingInput() {
