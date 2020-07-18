@@ -12,6 +12,8 @@ function onMouseInput(e) {
   handleInput(e.clientX, e.clientY);
 }
 
+
+
 export function getCurrentInput() {
   return inputNumbers;
 }
@@ -38,10 +40,15 @@ function useNumber() {
 }
 
 function onKeyDown(e) {
+  // console.log(e);
   if (e.code === 'ArrowUp') updateDirection(upTurn);
   if (e.code === 'ArrowRight') updateDirection(rightTurn);
   if (e.code === 'ArrowLeft') updateDirection(leftTurn);
   if (e.code === 'ArrowDown') updateDirection(downTurn);
+  if (e.code === 'KeyW') updateDirection(upTurn);
+  if (e.code === 'KeyD') updateDirection(rightTurn);
+  if (e.code === 'KeyA') updateDirection(leftTurn);
+  if (e.code === 'KeyS') updateDirection(downTurn);
   if (e.code === 'Digit1') numberInput(1);
   if (e.code === 'Digit2') numberInput(2);
   if (e.code === 'Digit3') numberInput(3);
@@ -63,6 +70,7 @@ function onKeyDown(e) {
   if (e.code === 'Numpad9') numberInput(9);
   if (e.code === 'Numpad0') numberInput(0);
   if (e.code === 'Enter') useNumber();
+  if (e.code === 'Space') useNumber();
   if (e.code === 'NumpadEnter') useNumber();
   if (e.code === 'Backspace') backspaceInput();
 }
@@ -75,6 +83,8 @@ function handleInput(x, y) {
 
 export function startCapturingInput() {
   // window.addEventListener('mousemove', onMouseInput);
+
+  window.addEventListener('mousemove', onMouseInput);
   window.addEventListener('click', onMouseInput);
   window.addEventListener('touchstart', onTouchInput);
   window.addEventListener('touchmove', onTouchInput);

@@ -46,7 +46,7 @@ function getRandomMath(lowerBound, upperBound) {
     leftHandSide: divider,
     rightHandSide,
     result,
-    mathString: `${divider} ÷ ${rightHandSide}`,
+    mathString: `${divider} / ${rightHandSide}`,
   };
 }
 

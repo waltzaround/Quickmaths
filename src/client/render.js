@@ -34,10 +34,10 @@ function render() {
   renderBackground(me.x, me.y);
 
   // Draw boundaries
-  context.strokeStyle = 'darkgray';
-  context.shadowColor = 'white';
+  context.strokeStyle = '#535353';
+  context.shadowColor = '#3A3A3A';
   context.shadowBlur = 15;
-  context.lineWidth = 12;
+  context.lineWidth = 4;
   context.strokeRect(canvas.width / 2 - me.x, canvas.height / 2 - me.y, MAP_SIZE, MAP_SIZE);
 
   // Draw all bullets
@@ -78,7 +78,7 @@ function renderPlayer(me, player) {
   context.translate(canvasX, canvasY);
   context.rotate(direction);
   context.drawImage(
-    getAsset('ship.svg'),
+    getAsset('ship3.svg'),
     -PLAYER_RADIUS,
     -PLAYER_RADIUS,
     PLAYER_RADIUS * 2,
@@ -102,12 +102,15 @@ function renderPlayer(me, player) {
     PLAYER_RADIUS * 2 * (1 - player.hp / PLAYER_MAX_HP),
     2,
   );
-  context.font = '24px DM Sans';
+
+
+
+  // Draw input field
+  context.font = '18px DM Sans';
   context.fillStyle = 'white';
   context.textAlign = 'center';
-
-  const input = getCurrentInput() === '' ? 'Type an answer and hit enter' : getCurrentInput();
-  context.fillText(input, canvasX, canvasY + 64);
+  const input = getCurrentInput() === '' ? 'Type an answer + enter' : getCurrentInput();
+  context.fillText(input, canvasX, canvasY + 56);
 }
 
 function hasNaNAtEnd(string) {
@@ -131,6 +134,7 @@ function renderOtherPlayer(me, player) {
   context.save();
   context.translate(canvasX, canvasY);
   context.rotate(direction);
+  
   context.drawImage(
     getAsset('ship2.svg'),
     -PLAYER_RADIUS,
@@ -155,13 +159,17 @@ function renderOtherPlayer(me, player) {
     PLAYER_RADIUS * 2 * (1 - player.hp / PLAYER_MAX_HP),
     2,
   );
-
-  context.font = '32px DM Sans';
+// setup font
+  context.font = '26px DM Sans';
   context.fillStyle = 'white';
   context.textAlign = 'center';
 
+  // draw math question
   context.fillText(user.mathQuestion.mathString, canvasX, canvasY - 40);
-  context.font = '12px DM Sans';
+  context.font = '14px DM Sans';
+
+
+  // draw draw username
   context.fillText(user.username, canvasX, canvasY + 48);
 }
 
