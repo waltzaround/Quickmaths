@@ -12,6 +12,8 @@ function onMouseInput(e) {
   handleInput(e.clientX, e.clientY);
 }
 
+
+
 export function getCurrentInput() {
   return inputNumbers;
 }
@@ -80,6 +82,8 @@ function handleInput(x, y) {
 
 export function startCapturingInput() {
   // window.addEventListener('mousemove', onMouseInput);
+
+  window.addEventListener('mousemove', onMouseInput);
   window.addEventListener('click', onMouseInput);
   window.addEventListener('touchstart', onTouchInput);
   window.addEventListener('touchmove', onTouchInput);
