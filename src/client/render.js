@@ -34,6 +34,8 @@ function render() {
 
   // Draw boundaries
   context.strokeStyle = 'darkgray';
+  context.shadowColor = 'white';
+  context.shadowBlur = 15;
   context.lineWidth = 12;
   context.strokeRect(canvas.width / 2 - me.x, canvas.height / 2 - me.y, MAP_SIZE, MAP_SIZE);
 

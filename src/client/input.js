@@ -16,12 +16,12 @@ function onTouchInput(e) {
   handleInput(touch.clientX, touch.clientY);
 }
 
-function numberInput(newnum){
+function numberInput(newnum) {
   inputNumbers = inputNumbers + newnum;
-  if (inputNumbers.length === 5){
-    inputNumbers = inputNumbers.substring(1, 5)
+  if (inputNumbers.length === 5) {
+    inputNumbers = inputNumbers.substring(1, 5);
   }
-  console.log("Number is now", inputNumbers)
+  console.log('Number is now', inputNumbers);
 }
  
 function useNumber(){
