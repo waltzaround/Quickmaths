@@ -30,6 +30,10 @@ export const connect = onGameOver => (
   })
 );
 
+export const fire = function(answer) {
+  socket.emit(Constants.MSG_TYPES.FIRE, answer);
+};
+
 export const play = username => {
   socket.emit(Constants.MSG_TYPES.JOIN_GAME, username);
 };

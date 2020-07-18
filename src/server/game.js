@@ -1,5 +1,6 @@
 const Constants = require('../shared/constants');
 const Player = require('./player');
+const Bullet = require('./bullet');
 const applyCollisions = require('./collisions');
 
 class Game {
@@ -29,6 +30,20 @@ class Game {
   handleInput(socket, dir) {
     if (this.players[socket.id]) {
       this.players[socket.id].setDirection(dir);
+    }
+  }
+
+  fireBullet(socket, number) {
+    if(this.players[socket.id]) {
+      console.log("Bullet fire method firedß")
+      var player = this.players[socket.id]
+      //this.players[socket.id].fireBullet(number);
+      // Create a new bullet aimed at the nearest player
+      if(Object.keys(this.players).length > 1){
+        // Create the new bullet
+        var nb = new Bullet(player.id, player.x, player.y, player.directionTo(player.findClosestPlayerFrom(this.players) ))
+        this.bullets.push(nb);
+      }
     }
   }
 
@@ -66,7 +81,7 @@ class Game {
             let d = player.distanceTo(opponent)
             if(d < 2000){
               newBullet.setDirection(player.directionTo(opponent))
-              this.bullets.push(newBullet);
+              //this.bullets.push(newBullet);
             }
           }
           
