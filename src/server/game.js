@@ -41,7 +41,7 @@ class Game {
       Object.values(this.players).forEach(({ mathQuestion, id }) => {
         const { result } = mathQuestion;
         if (number === result) {
-          const nb = new Bullet(player.id, player.x, player.y, player.directionTo(this.players[id]));
+          const nb = new Bullet(player.id, player.x, player.y, player.directionTo(this.players[id]), number);
           this.bullets.push(nb);
         }
       });

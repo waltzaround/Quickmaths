@@ -10,7 +10,7 @@ function applyCollisions(players, bullets) {
       const bullet = bullets[i];
       const player = players[j];
       if (
-        bullet.parentID !== player.id &&
+        bullet.parentID !== player.id && player.mathQuestion.result === bullet.fire_value &&
         player.distanceTo(bullet) <= Constants.PLAYER_RADIUS + Constants.BULLET_RADIUS
       ) {
         destroyedBullets.push(bullet);
