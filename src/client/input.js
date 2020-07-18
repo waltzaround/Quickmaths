@@ -70,6 +70,7 @@ function onKeyDown(e) {
   if (e.code === 'Numpad9') numberInput(9);
   if (e.code === 'Numpad0') numberInput(0);
   if (e.code === 'Enter') useNumber();
+  if (e.code === 'Space') useNumber();
   if (e.code === 'NumpadEnter') useNumber();
   if (e.code === 'Backspace') backspaceInput();
 }
