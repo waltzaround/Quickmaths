@@ -3,6 +3,7 @@
 import { debounce } from 'throttle-debounce';
 import { getAsset } from './assets';
 import { getCurrentState } from './state';
+import { getCurrentInput } from './input';
 
 const Constants = require('../shared/constants');
 
@@ -105,7 +106,8 @@ function renderPlayer(me, player) {
   context.fillStyle = 'white';
   context.textAlign = 'center';
 
-  context.fillText('Type in a number and hit enter', canvasX, canvasY * 2 - 40);
+  const input = getCurrentInput() === '' ? 'Type your answer and press enter' : getCurrentInput();
+  context.fillText(input, canvasX, canvasY * 2 - 40);
 }
 
 function hasNaNAtEnd(string) {
