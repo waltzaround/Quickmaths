@@ -105,7 +105,7 @@ function renderPlayer(me, player) {
   context.fillStyle = 'white';
   context.textAlign = 'center';
 
-  context.fillText('Type in an answer and hit enter', canvasX, canvasY * 2 - 40);
+  context.fillText('Type in a number and hit enter', canvasX, canvasY * 2 - 40);
 }
 
 function hasNaNAtEnd(string) {
