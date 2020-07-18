@@ -109,7 +109,7 @@ function renderPlayer(me, player) {
   context.font = '18px DM Sans';
   context.fillStyle = 'white';
   context.textAlign = 'center';
-  const input = getCurrentInput() === '' ? 'Type an answer and hit enter' : getCurrentInput();
+  const input = getCurrentInput() === '' ? 'Type an answer + enter' : getCurrentInput();
   context.fillText(input, canvasX, canvasY + 56);
 }
 
