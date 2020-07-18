@@ -28,6 +28,10 @@ function numberInput(newnum) {
   }
 }
 
+function backspaceInput() {
+  inputNumbers = inputNumbers.substring(0,inputNumbers.length - 1);
+}
+
 function useNumber() {
   fire(Number(inputNumbers));
   inputNumbers = '';
@@ -60,6 +64,8 @@ function onKeyDown(e) {
   if (e.code === 'Numpad9') numberInput(9);
   if (e.code === 'Numpad0') numberInput(0);
   if (e.code === 'Enter') useNumber();
+  if (e.code === 'NumpadEnter') useNumber();
+  if (e.code === 'Backspace') backspaceInput();
 }
 
 function handleInput(x, y) {
