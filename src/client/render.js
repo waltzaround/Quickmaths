@@ -102,12 +102,12 @@ function renderPlayer(me, player) {
     PLAYER_RADIUS * 2 * (1 - player.hp / PLAYER_MAX_HP),
     2,
   );
-  context.font = '32px DM Sans';
+  context.font = '24px DM Sans';
   context.fillStyle = 'white';
   context.textAlign = 'center';
 
   const input = getCurrentInput() === '' ? 'Type your answer and press enter' : getCurrentInput();
-  context.fillText(input, canvasX, canvasY * 2 - 40);
+  context.fillText(input, canvasX, canvasY + 64);
 }
 
 function hasNaNAtEnd(string) {
