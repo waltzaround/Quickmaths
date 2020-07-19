@@ -69,16 +69,16 @@ class Game {
       const player = this.players[playerID];
       const newBullet = player.update(dt);
       if (newBullet) {
-        Object.keys(this.players).forEach(opponentID => {
-          const opponent = this.players[opponentID];
-          if (opponentID !== playerID) {
-            const d = player.distanceTo(opponent);
-            if (d < 2000) {
-              newBullet.setDirection(player.directionTo(opponent));
-              // this.bullets.push(newBullet);
-            }
-          }
-        });
+        // Object.keys(this.players).forEach(opponentID => {
+        //   const opponent = this.players[opponentID];
+        //   if (opponentID !== playerID) {
+        //     const d = player.distanceTo(opponent);
+        //     if (d < 2000) {
+        //       newBullet.setDirection(player.directionTo(opponent));
+        //       // this.bullets.push(newBullet);
+        //     }
+        //   }
+        // });
       }
     });
 
@@ -103,11 +103,15 @@ class Game {
 
     // Send a game update to each player every other time
     if (this.shouldSendUpdate) {
+      let self = this
       const leaderboard = this.getLeaderboard();
       Object.keys(this.sockets).forEach(playerID => {
         const socket = this.sockets[playerID];
         const player = this.players[playerID];
-        socket.emit(Constants.MSG_TYPES.GAME_UPDATE, this.createUpdate(player, leaderboard));
+        async function  blah() { 
+          socket.emit(Constants.MSG_TYPES.GAME_UPDATE, self.createUpdate(player, leaderboard));
+        }
+        blah().then(function(){})
       });
       this.shouldSendUpdate = false;
     } else {
