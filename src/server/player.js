@@ -20,6 +20,16 @@ class Player extends ObjectClass {
     // Update score
     this.score += dt * Constants.SCORE_PER_SECOND;
 
+    if(this.hp < Constants.PLAYER_MAX_HP) {
+      if (this.hp < 20) {
+        this.hp += Constants.REGEN_HP_PER_TICK * 3;
+      } else if(this.hp < 50){
+        this.hp += Constants.REGEN_HP_PER_TICK * 2;
+      } else {
+        this.hp += Constants.REGEN_HP_PER_TICK;
+      }
+    }
+
     // Make sure the player stays in bounds
     this.x = Math.max(0, Math.min(Constants.MAP_SIZE, this.x));
     this.y = Math.max(0, Math.min(Constants.MAP_SIZE, this.y));
@@ -35,6 +45,7 @@ class Player extends ObjectClass {
   }
 
   takeBulletDamage() {
+    console.log(this.hp)
     this.hp -= Constants.BULLET_DAMAGE;
     this.mathQuestion = getRandomMath(1, 10);
   }
