@@ -38,7 +38,6 @@ export const fire = answer => {
 };
 
 export const playDamageSound = n => {
-  console.log("Damage sound event recieved")
   playDamageAudio(1)
 }
 
