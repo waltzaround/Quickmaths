@@ -83,11 +83,44 @@ function renderBackground(x, y) {
   context.fillRect(0, 0, canvas.width, canvas.height);
 }
 
+const CURRENT_PLAYER = {}
+
 // Renders a ship at the given coordinates
 function renderPlayer(me, player) {
-  const { x, y, direction } = player;
+  const { id, x, y, direction } = player;
   const canvasX = canvas.width / 2 + x - me.x;
   const canvasY = canvas.height / 2 + y - me.y;
+
+  const striperID = hasNaNAtEnd(id) ? id.slice(0, id.length - 3) : id;
+
+  if (!CURRENT_PLAYER[striperID]) {
+    CURRENT_PLAYER[striperID] = [{x: x, y:y, mex: me.x, mey: me.y}]
+  }else {
+    if (CURRENT_PLAYER[striperID].length > 20) {
+      CURRENT_PLAYER[striperID].shift();
+    }
+    CURRENT_PLAYER[striperID].push({x:x, y:y, mex: me.x, mey: me.y})
+  }
+
+  const numPrevPlayerTrail = CURRENT_PLAYER[striperID].length;
+
+  const opacityIncrease = 1 / numPrevPlayerTrail;
+
+  let count = 0;
+  for (let obj of CURRENT_PLAYER[striperID]) {
+    if (count > 8) {
+      count += 1;
+      continue;
+    }
+    const {x, y, mex, mey} = obj;
+    context.beginPath();
+    context.arc(canvas.width / 2 + x - me.x,canvas.height / 2 + y - me.y , 10, 0, 2 * Math.PI, true);
+    const opacity = opacityIncrease * count;
+    const styleString = "rgba(137, 196, 244, " + opacity.toString() + ")"
+    context.fillStyle = styleString;
+    context.fill();
+    count += 1;
+  }
 
   // Draw ship
   context.save();
@@ -134,6 +167,8 @@ function hasNaNAtEnd(string) {
   return last3Char === 'NaN';
 }
 
+const OTHER_PLAYERS = {}
+
 // Renders a ship at the given coordinates
 function renderOtherPlayer(me, player) {
   const { x, y, direction, id } = player;
@@ -145,6 +180,31 @@ function renderOtherPlayer(me, player) {
   }
   const canvasX = canvas.width / 2 + x - me.x;
   const canvasY = canvas.height / 2 + y - me.y;
+
+  if (!OTHER_PLAYERS[striperID]) {
+    OTHER_PLAYERS[striperID] = [{x: x, y:y, mex: me.x, mey: me.y}]
+  }else {
+    if (OTHER_PLAYERS[striperID].length > 12) {
+      OTHER_PLAYERS[striperID].shift();
+    }
+    OTHER_PLAYERS[striperID].push({x:x, y:y, mex: me.x, mey: me.y})
+  }
+
+  const numPrevPlayerTrail = OTHER_PLAYERS[striperID].length;
+
+  const opacityIncrease = 1 / numPrevPlayerTrail;
+
+  let count = 0;
+  for (let obj of OTHER_PLAYERS[striperID]) {
+    const {x, y, mex, mey} = obj;
+    context.beginPath();
+    context.arc(canvas.width / 2 + x - me.x,canvas.height / 2 + y - me.y , 10, 0, 2 * Math.PI, true);
+    const opacity = opacityIncrease * count;
+    const styleString = "rgba(255, 69, 0, " + opacity.toString() + ")"
+    context.fillStyle = styleString;
+    context.fill();
+    count += 1;
+  }
 
   // Draw ship
   context.save();
@@ -216,7 +276,7 @@ function renderBullet(me, bullet) {
   for (let obj of BULLET_TRAIL[striperID]) {
     const {x, y, mex, mey} = obj;
     context.beginPath();
-    context.arc(canvas.width / 2 + x - mex - BULLET_RADIUS,canvas.height / 2 + y - mey - BULLET_RADIUS, 10, 0, 2 * Math.PI, true);
+    context.arc(canvas.width / 2 + x - me.x - BULLET_RADIUS,canvas.height / 2 + y - me.y - BULLET_RADIUS, 10, 0, 2 * Math.PI, true);
     const opacity = opacityIncrease * count;
     const styleString = "rgba(98, 54, 255, " + opacity.toString() + ")"
     context.fillStyle = styleString;
