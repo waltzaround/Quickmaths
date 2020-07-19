@@ -40,7 +40,7 @@ class Game {
       // Create a new bullet aimed at the nearest player
       Object.values(this.players).forEach(({ mathQuestion, id }) => {
         const { result } = mathQuestion;
-        if (number === result) {
+        if (number === result && player.id !== id) {
           const nb = new Bullet(player.id, player.x, player.y, player.directionTo(this.players[id]), number);
           this.bullets.push(nb);
         }
@@ -68,18 +68,6 @@ class Game {
     Object.keys(this.sockets).forEach(playerID => {
       const player = this.players[playerID];
       const newBullet = player.update(dt);
-      if (newBullet) {
-        // Object.keys(this.players).forEach(opponentID => {
-        //   const opponent = this.players[opponentID];
-        //   if (opponentID !== playerID) {
-        //     const d = player.distanceTo(opponent);
-        //     if (d < 2000) {
-        //       newBullet.setDirection(player.directionTo(opponent));
-        //       // this.bullets.push(newBullet);
-        //     }
-        //   }
-        // });
-      }
     });
 
     // Apply collisions, give players score for hitting bullets
@@ -108,10 +96,7 @@ class Game {
       Object.keys(this.sockets).forEach(playerID => {
         const socket = this.sockets[playerID];
         const player = this.players[playerID];
-        async function  blah() { 
-          socket.emit(Constants.MSG_TYPES.GAME_UPDATE, self.createUpdate(player, leaderboard));
-        }
-        blah().then(function(){})
+        socket.emit(Constants.MSG_TYPES.GAME_UPDATE, self.createUpdate(player, leaderboard));
       });
       this.shouldSendUpdate = false;
     } else {
@@ -127,14 +112,17 @@ class Game {
   }
 
   createUpdate(player, leaderboard) {
+    //let start = new Date().getTime();
+    
     const nearbyPlayers = Object.values(this.players).filter(
       p => p !== player && p.distanceTo(player) <= Constants.MAP_SIZE / 2,
     );
+    
     const nearbyBullets = this.bullets.filter(
       b => b.distanceTo(player) <= Constants.MAP_SIZE / 2,
     );
 
-    return {
+    let out = {
       t: Date.now(),
       me: player.serializeForUpdate(),
       others: nearbyPlayers.map(p => p.serializeForUpdate()),
@@ -142,6 +130,14 @@ class Game {
       leaderboard,
       players: this.players,
     };
+    
+    //console.log(performance.now() - start)
+    // var end = new Date().getTime();
+    // var time = end - start;
+    // console.log("Createupdate", time)
+    
+
+    return out 
   }
 }
 
