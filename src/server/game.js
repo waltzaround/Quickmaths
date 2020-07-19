@@ -72,6 +72,14 @@ class Game {
 
     // Apply collisions, give players score for hitting bullets
     const destroyedBullets = applyCollisions(Object.values(this.players), this.bullets);
+    if (destroyedBullets.length > 0) {
+
+      Object.keys(this.sockets).forEach(playerID => {
+        const socket = this.sockets[playerID];
+        socket.emit(Constants.MSG_TYPES.PLAYER_TOOK_DAMAGE, 1)
+      });
+      
+    }
     destroyedBullets.forEach(b => {
       if (this.players[b.parentID]) {
         this.players[b.parentID].onDealtDamage();
@@ -131,10 +139,7 @@ class Game {
       players: this.players,
     };
     
-    //console.log(performance.now() - start)
-    // var end = new Date().getTime();
-    // var time = end - start;
-    // console.log("Createupdate", time)
+
     
 
     return out 

@@ -10,16 +10,34 @@ import firing7 from '../../public/assets/audio/firing/fire7.mp3';
 import firing8 from '../../public/assets/audio/firing/fire8.mp3';
 import firing9 from '../../public/assets/audio/firing/fire9.mp3';
 import firing10 from '../../public/assets/audio/firing/fire10.mp3';
-import firing11 from '../../public/assets/audio/firing/fire11.mp3';
 
-const FIRE_AUDIO = [firing1, firing2, firing3, firing4, firing5, firing6, firing7, firing8, firing9, firing10, firing11];
+import death1 from '../../public/assets/audio/death/death.mp3';
+import death2 from '../../public/assets/audio/death/death2.mp3';
+import death3 from '../../public/assets/audio/death/death3.mp3';
+import death4 from '../../public/assets/audio/death/death4.mp3';
+
+const FIRE_AUDIO = [firing1, firing2, firing3, firing4, firing5, firing6, firing7, firing8, firing9, firing10];
+const DAMAGE_AUDIO = [death1, death2, death3]
 
 /**
  * @param {number} delayTime milli second
  */
-export default function playFireAudioIn(delayTime) {
+export function playFireAudio(delayTime) {
   setTimeout(() => {
     const audioURL = FIRE_AUDIO[random(FIRE_AUDIO.length - 1)];
+    const audioObj = new Audio(audioURL);
+    audioObj.loop = false;
+    audioObj.onended = () => {
+      audioObj.pause();
+    };
+    audioObj.load();
+    audioObj.play();
+  }, delayTime);
+}
+
+export function playDamageAudio(delayTime) {
+  setTimeout(() => {
+    const audioURL = DAMAGE_AUDIO[random(DAMAGE_AUDIO.length - 1)];
     const audioObj = new Audio(audioURL);
     audioObj.loop = false;
     audioObj.onended = () => {

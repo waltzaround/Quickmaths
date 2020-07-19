@@ -45,7 +45,6 @@ class Player extends ObjectClass {
   }
 
   takeBulletDamage() {
-    console.log(this.hp)
     this.hp -= Constants.BULLET_DAMAGE;
     this.mathQuestion = getRandomMath(1, 10);
   }

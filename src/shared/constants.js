@@ -19,5 +19,6 @@ module.exports = Object.freeze({
     INPUT: 'input',
     GAME_OVER: 'dead',
     FIRE: 'fire',
+    PLAYER_TOOK_DAMAGE: 'player_damaged',
   },
 });
