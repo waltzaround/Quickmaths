@@ -200,7 +200,7 @@ function renderBullet(me, bullet) {
   if (!BULLET_TRAIL[striperID]) {
     BULLET_TRAIL[striperID] = [{x: x, y:y, mex: me.x, mey: me.y}]
   }else {
-    if (BULLET_TRAIL[striperID].length > 20) {
+    if (BULLET_TRAIL[striperID].length > 3) {
       BULLET_TRAIL[striperID].shift();
     }
 
