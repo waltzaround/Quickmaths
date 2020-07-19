@@ -276,7 +276,7 @@ function renderBullet(me, bullet) {
   for (let obj of BULLET_TRAIL[striperID]) {
     const {x, y, mex, mey} = obj;
     context.beginPath();
-    context.arc(canvas.width / 2 + x - mex - BULLET_RADIUS,canvas.height / 2 + y - mey - BULLET_RADIUS, 10, 0, 2 * Math.PI, true);
+    context.arc(canvas.width / 2 + x - me.x - BULLET_RADIUS,canvas.height / 2 + y - me.y - BULLET_RADIUS, 10, 0, 2 * Math.PI, true);
     const opacity = opacityIncrease * count;
     const styleString = "rgba(98, 54, 255, " + opacity.toString() + ")"
     context.fillStyle = styleString;
