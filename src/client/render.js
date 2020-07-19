@@ -9,6 +9,8 @@ const Constants = require('../shared/constants');
 
 const { PLAYER_RADIUS, PLAYER_MAX_HP, BULLET_RADIUS, MAP_SIZE } = Constants;
 
+const BULLET_TRAIL = {}
+
 // Get the canvas graphics context
 const canvas = document.getElementById('game-canvas');
 const context = canvas.getContext('2d');
@@ -42,6 +44,20 @@ function render() {
 
   // Draw all bullets
   bullets.forEach(renderBullet.bind(null, me));
+  const bulletIds = bullets.map(b => b.id);
+
+
+  const keysToDelete = []
+  for (let key in Object.keys(BULLET_TRAIL)) {
+    if (!bulletIds.includes(key)) {
+      keysToDelete.push(key);
+    }
+  }
+
+  for (let key of keysToDelete) {
+    delete BULLET_TRAIL[key];
+  }
+
   // Draw all players
   renderPlayer(me, me);
   others.forEach(otherPlayer => renderOtherPlayer(me, otherPlayer));
@@ -173,8 +189,41 @@ function renderOtherPlayer(me, player) {
   context.fillText(user.username, canvasX, canvasY + 48);
 }
 
+
+
 function renderBullet(me, bullet) {
-  const { x, y } = bullet;
+
+  const { id, x, y } = bullet;
+
+  const striperID = hasNaNAtEnd(id) ? id.slice(0, id.length - 3) : id;
+
+  if (!BULLET_TRAIL[striperID]) {
+    BULLET_TRAIL[striperID] = [{x: x, y:y, mex: me.x, mey: me.y}]
+  }else {
+    if (BULLET_TRAIL[striperID].length > 20) {
+      BULLET_TRAIL[striperID].shift();
+    }
+
+
+    BULLET_TRAIL[striperID].push({x:x, y:y, mex: me.x, mey: me.y})
+  }
+
+  const numPrevBullets = BULLET_TRAIL[striperID].length;
+
+  const opacityIncrease = 1 / numPrevBullets;
+
+  let count = 0;
+  for (let obj of BULLET_TRAIL[striperID]) {
+    const {x, y, mex, mey} = obj;
+    context.beginPath();
+    context.arc(canvas.width / 2 + x - mex - BULLET_RADIUS,canvas.height / 2 + y - mey - BULLET_RADIUS, 10, 0, 2 * Math.PI, true);
+    const opacity = opacityIncrease * count;
+    const styleString = "rgba(98, 54, 255, " + opacity.toString() + ")"
+    context.fillStyle = styleString;
+    context.fill();
+    count += 1;
+  }
+
   context.drawImage(
     getAsset('bullet.svg'),
     canvas.width / 2 + x - me.x - BULLET_RADIUS,
