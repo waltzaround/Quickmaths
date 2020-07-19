@@ -3,7 +3,7 @@
 import io from 'socket.io-client';
 import { throttle } from 'throttle-debounce';
 import { processGameUpdate } from './state';
-import playFireAudio from './audio';
+import { playFireAudio, playDamageAudio } from './audio';
 
 const Constants = require('../shared/constants');
 
@@ -21,6 +21,7 @@ export const connect = onGameOver => (
     // Register callbacks
     socket.on(Constants.MSG_TYPES.GAME_UPDATE, processGameUpdate);
     socket.on(Constants.MSG_TYPES.GAME_OVER, onGameOver);
+    socket.on(Constants.MSG_TYPES.PLAYER_TOOK_DAMAGE, playDamageSound)
     socket.on('disconnect', () => {
       console.log('Disconnected from server.');
       document.getElementById('disconnect-modal').classList.remove('hidden');
@@ -35,6 +36,11 @@ export const fire = answer => {
   socket.emit(Constants.MSG_TYPES.FIRE, answer);
   playFireAudio(1);
 };
+
+export const playDamageSound = n => {
+  console.log("Damage sound event recieved")
+  playDamageAudio(1)
+}
 
 export const play = username => {
   socket.emit(Constants.MSG_TYPES.JOIN_GAME, username);
