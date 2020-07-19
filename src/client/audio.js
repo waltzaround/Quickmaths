@@ -14,7 +14,7 @@ import firing10 from '../../public/assets/audio/firing/fire10.mp3';
 import death1 from '../../public/assets/audio/death/death.mp3';
 import death2 from '../../public/assets/audio/death/death2.mp3';
 import death3 from '../../public/assets/audio/death/death3.mp3';
-import death3 from '../../public/assets/audio/death/death4.mp3';
+import death4 from '../../public/assets/audio/death/death4.mp3';
 
 const FIRE_AUDIO = [firing1, firing2, firing3, firing4, firing5, firing6, firing7, firing8, firing9, firing10];
 const DAMAGE_AUDIO = [death1, death2, death3]
