@@ -10,7 +10,10 @@ import { setLeaderboardHidden } from './leaderboard';
 
 import die1 from '../../public/assets/audio/death/death.mp3';
 import die2 from '../../public/assets/audio/death/death2.mp3';
+
+import die3 from '../../public/assets/audio/death/death3.mp3';
 import bg from '../../public/assets/audio/bg.mp3';
+import bg2 from '../../public/assets/audio/bg.mp3';
 import start from '../../public/assets/audio/start.mp3';
 // I'm using a tiny subset of Bootstrap here for convenience - there's some wasted CSS,
 // but not much. In general, you should be careful using Bootstrap because it makes it
@@ -26,13 +29,14 @@ const deathMenu = document.getElementById('death-menu');
 const scoreParagraph = document.getElementById('score-paragraph');
 const playAgainButton = document.getElementById('play-again-button');
 
-const audioObj = new Audio(bg);
+const audioObj = new Audio(bg2);
 const DIE_AUDIO = [die1, die2];
+const dieObj= new Audio(die3);
 const startaudio = new Audio(start);
 audioObj.loop = true;
 
 const startPlaying = () => {
-  //audioObj.play();
+  // audioObj.play();
   audioObj.play();
   startaudio.play();  
   play(usernameInput.value);
@@ -52,8 +56,15 @@ Promise.all([
   playMenu.classList.remove('hidden');
   usernameInput.focus();
   playButton.onclick = () => {
+    
+
     startPlaying();
   };
+  usernameInput.addEventListener('keyup', function(e) {
+    if (e.code === "Enter"){
+      startPlaying();
+    }
+  })
   playAgainButton.onclick = () => {
     startPlaying();
   }
@@ -62,6 +73,9 @@ Promise.all([
 // message: { score: 123 }
 function onGameOver(message) {
   stopCapturingInput();
+
+  audioObj.pause();
+  dieObj.play();
   stopRendering();
   scoreParagraph.innerHTML = "Your score: " + Math.round(message.score);
   deathMenu.classList.remove('hidden');

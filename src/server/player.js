@@ -20,16 +20,26 @@ class Player extends ObjectClass {
     // Update score
     this.score += dt * Constants.SCORE_PER_SECOND;
 
+    if(this.hp < Constants.PLAYER_MAX_HP) {
+      if (this.hp < 20) {
+        this.hp += Constants.REGEN_HP_PER_TICK * 3;
+      } else if(this.hp < 50){
+        this.hp += Constants.REGEN_HP_PER_TICK * 2;
+      } else {
+        this.hp += Constants.REGEN_HP_PER_TICK;
+      }
+    }
+
     // Make sure the player stays in bounds
     this.x = Math.max(0, Math.min(Constants.MAP_SIZE, this.x));
     this.y = Math.max(0, Math.min(Constants.MAP_SIZE, this.y));
 
     // Fire a bullet, if needed
-    this.fireCooldown -= dt;
-    if (this.fireCooldown <= 0) {
-      this.fireCooldown += Constants.PLAYER_FIRE_COOLDOWN;
-      return new Bullet(this.id, this.x, this.y, this.direction);
-    }
+    // this.fireCooldown -= dt;
+    // if (this.fireCooldown <= 0) {
+    //   this.fireCooldown += Constants.PLAYER_FIRE_COOLDOWN;
+    //   return new Bullet(this.id, this.x, this.y, this.direction);
+    // }
 
     return null;
   }
@@ -51,7 +61,6 @@ class Player extends ObjectClass {
     Object.keys(players).forEach(opponentID => {
       let opponent = players[opponentID]
 
-      console.log(opponentID, this.id)
       if (opponentID != this.id){
         
         let d = this.distanceTo(opponent)
@@ -66,7 +75,6 @@ class Player extends ObjectClass {
     // Return the opponent with the lowest distance from player
     
     let closest_player = players[closest_id]
-    console.log(players, closest_id, closest_player)
     return closest_player
   }
   serializeForUpdate() {

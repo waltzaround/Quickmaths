@@ -89,7 +89,7 @@ button:focus {
   position: fixed;
   top: 50%;
   left: 50%;
- 
+  width: 25rem;
   transform: translateY(-50%) translateX(-50%);
   padding: 20px 30px;
   background-color: white;
@@ -125,19 +125,20 @@ button:focus {
   position: fixed;
   top: 10px;
   right: 10px;
-  background-color: black;
+
+  background-color: rgba(0,0,0,0.8);
   color: white;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: 16px;
 }
 
 #leaderboard th {
-  text-align: center;
+  text-align: left;
   padding: 2px 5px;
 }
 
 #leaderboard td {
-  text-align: center;
+  text-align: left;
   padding: 2px 5px;
 }
 
@@ -148,6 +149,10 @@ button:focus {
   right: 0;
   bottom: 0;
   background-color: rgba(0, 0, 0, 0.75);
+}
+
+#score-paragraph {
+  font-size: 2rem;
 }
 
 #disconnect-modal > div {

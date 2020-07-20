@@ -34,14 +34,14 @@ class Game {
   }
 
   fireBullet(socket, number) {
-    if (this.players[socket.id]) {
-      const player = this.players[socket.id];
-      // this.players[socket.id].fireBullet(number);
+    if(this.players[socket.id]) {
+      var player = this.players[socket.id]
+      //this.players[socket.id].fireBullet(number);
       // Create a new bullet aimed at the nearest player
       Object.values(this.players).forEach(({ mathQuestion, id }) => {
         const { result } = mathQuestion;
-        if (number === result) {
-          const nb = new Bullet(player.id, player.x, player.y, player.directionTo(this.players[id]));
+        if (number === result && player.id !== id) {
+          const nb = new Bullet(player.id, player.x, player.y, player.directionTo(this.players[id]), number);
           this.bullets.push(nb);
         }
       });
@@ -68,29 +68,18 @@ class Game {
     Object.keys(this.sockets).forEach(playerID => {
       const player = this.players[playerID];
       const newBullet = player.update(dt);
-      // console.log(newBullet);
-      // console.log(this.players);
-
-      // self.players.forEach(function(item,index){
-      //   console.log(this)
-      //   console.log(player.distanceTo(item))
-      // })
-      if (newBullet) {
-        Object.keys(this.players).forEach(opponentID => {
-          const opponent = this.players[opponentID];
-          if (opponentID !== playerID) {
-            const d = player.distanceTo(opponent);
-            if (d < 2000) {
-              newBullet.setDirection(player.directionTo(opponent));
-              // this.bullets.push(newBullet);
-            }
-          }
-        });
-      }
     });
 
     // Apply collisions, give players score for hitting bullets
     const destroyedBullets = applyCollisions(Object.values(this.players), this.bullets);
+    if (destroyedBullets.length > 0) {
+
+      Object.keys(this.sockets).forEach(playerID => {
+        const socket = this.sockets[playerID];
+        socket.emit(Constants.MSG_TYPES.PLAYER_TOOK_DAMAGE, 1)
+      });
+      
+    }
     destroyedBullets.forEach(b => {
       if (this.players[b.parentID]) {
         this.players[b.parentID].onDealtDamage();
@@ -110,11 +99,12 @@ class Game {
 
     // Send a game update to each player every other time
     if (this.shouldSendUpdate) {
+      let self = this
       const leaderboard = this.getLeaderboard();
       Object.keys(this.sockets).forEach(playerID => {
         const socket = this.sockets[playerID];
         const player = this.players[playerID];
-        socket.emit(Constants.MSG_TYPES.GAME_UPDATE, this.createUpdate(player, leaderboard));
+        socket.emit(Constants.MSG_TYPES.GAME_UPDATE, self.createUpdate(player, leaderboard));
       });
       this.shouldSendUpdate = false;
     } else {
@@ -130,14 +120,17 @@ class Game {
   }
 
   createUpdate(player, leaderboard) {
+    //let start = new Date().getTime();
+    
     const nearbyPlayers = Object.values(this.players).filter(
       p => p !== player && p.distanceTo(player) <= Constants.MAP_SIZE / 2,
     );
+    
     const nearbyBullets = this.bullets.filter(
       b => b.distanceTo(player) <= Constants.MAP_SIZE / 2,
     );
 
-    return {
+    let out = {
       t: Date.now(),
       me: player.serializeForUpdate(),
       others: nearbyPlayers.map(p => p.serializeForUpdate()),
@@ -145,6 +138,11 @@ class Game {
       leaderboard,
       players: this.players,
     };
+    
+
+    
+
+    return out 
   }
 }
 

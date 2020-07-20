@@ -4,18 +4,11 @@
   <title>Quick Maths</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="shortcut icon" href="/assets/icon64.png">
-  <meta property="description" content="A complete example multiplayer .io web game implemented from scratch. Built with Javascript and Node.js. Open source on Github.">
-  <meta property="og:title" content="An example .io game">
-  <meta property="og:description" content="A complete example multiplayer .io web game implemented from scratch. Built with Javascript and Node.js. Open source on Github.">
+  <meta property="description" content="Quick Maths is a multiplayer game where you shoot your enemies with math">
+  <meta property="og:title" content="Quick Maths">
+  <meta property="og:description" content="Quick Maths is a multiplayer game where you shoot your enemies with math">
   <meta property="og:image" content="/assets/icon1200.png">
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-58664433-3"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
 
-    gtag('config', 'UA-58664433-3');
-  </script>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;700&display=swap" rel="stylesheet">
   <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js"></script>
 <script>
@@ -25,6 +18,16 @@
     }
   });
 </script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-163856842-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-163856842-3');
+</script>
+
 </head>
 <body>
   <canvas id="game-canvas"></canvas>
@@ -38,13 +41,13 @@
     </p>
     <hr />
   
-    <input type="text" id="username-input" placeholder="Username (Optional)" />
+    <input type="text" id="username-input" placeholder="Username (Optional)"  maxlength="16"/>
     <button id="play-button">Play Game</button>
   </div>
   <div id="leaderboard" class="hidden">
     <table>
       <tr>
-        <th>Username</th>
+        <th>Player</th>
         <th>Score</th>
       </tr>
       <tr><td></td><td></td></tr>
@@ -55,8 +58,11 @@
     </table>
   </div>
   <div id="death-menu" class="hidden">
-    <h1>You died</h1>
+    <h1>You Died</h1><hr/>
     <p id="score-paragraph"></p>
+    <hr/>
+    <p>Made by<br/><a href='https://github.com/wseagar'>Will</a> + <a href='https://minh.rocks'>Minh</a> + <a href='https://walt.online'>Walt</a> + <a href='https://github.com/johncave'>John</a><br/><a href='https://github.com/waltzaround/Quickmaths'>See repo here</a></p>
+ 
     <button id="play-again-button">Play again</button>
   </div>
   <div id="disconnect-modal" class="hidden">
