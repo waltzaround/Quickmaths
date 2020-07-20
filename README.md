@@ -5,6 +5,10 @@
     An educational multiplayer battle royale built for the <a href='https://kiwijam.org'>KiwiJam 2020 Game Jam</a>
 </h4>
 
+## Try it out
+
+Visit https://quickmaths.online
+
 ## Development
 
 To get started, make sure you have Node and NPM installed. Then,
