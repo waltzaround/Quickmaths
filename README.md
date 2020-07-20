@@ -2,7 +2,7 @@
     Quick Maths
 </h1>
 <h4 align="center">
-    An educational multiplayer battle royale built for the <a href='https://kiwijam.org'>KiwiJam 2020 Game Jam</a>
+    An educational multiplayer math battle built for the <a href='https://kiwijam.org'>KiwiJam 2020 Game Jam</a>
 </h4>
 
 ## Try it out
