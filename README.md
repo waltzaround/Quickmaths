@@ -1,13 +1,20 @@
 <h1 align="center">
-    Quick Mafs
+    Quick Maths
 </h1>
 <h4 align="center">
 A multiplayer battle royale
 </h4>
 
-<p align="center">
-Forked from [**How to Build a Multiplayer (.io) Web Game**](https://victorzhou.com/blog/build-an-io-game-part-1/).
-</p>
+Credits
+
+
+* Performance Optimisations, Full Stack Dev - [Minh Phu Lai](https://github.com/MinhPhu0304)
+* Visual Effects, UI Implementation, Full Stack Dev - [William Seagar](https://github.com/wseagar)
+* Design, Usability Research, Product, Full Stack Dev - [Walter Lim](https://github.com/waltzaround)
+* Devops, Infrastructure, Full Stack Dev - [John Cave](https://github.com/johncave)
+
+* Forked from [How to Build a Multiplayer (.io) Web Game](https://victorzhou.com/blog/build-an-io-game-part-1/)
+
 
 
 
