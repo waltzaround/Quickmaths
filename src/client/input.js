@@ -58,6 +58,7 @@ function onKeyDown(e) {
   if (e.code === 'Digit8') numberInput(8);
   if (e.code === 'Digit9') numberInput(9);
   if (e.code === 'Digit0') numberInput(0);
+  if (e.code === 'Minus') numberInput('-');
   if (e.code === 'Numpad1') numberInput(1);
   if (e.code === 'Numpad2') numberInput(2);
   if (e.code === 'Numpad3') numberInput(3);
